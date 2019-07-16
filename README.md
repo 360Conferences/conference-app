@@ -14,8 +14,12 @@ of various 360|Conferences events.
     - [Add an Android app](https://firebase.google.com/docs/flutter/setup#configure_an_android_app)
     - [Add an iOS app](https://firebase.google.com/docs/flutter/setup#configure_an_ios_app)
 
-1. Enable Google Maps
-1. Add a Maps API key to your app
+1. Enable Google Maps APIs for your Firebase project
+    - Launch the [Google Cloud Platform Console](https://console.cloud.google.com/google/maps-apis/overview)
+    - Select **APIs & Services > Library** from the menu
+    - Enable `Maps SDK for Android` and `Maps SDK for iOS`
+
+1. Add Maps API keys to your app
     - [Android](https://developers.google.com/maps/documentation/android-sdk/get-api-key)
     - [iOS](https://developers.google.com/maps/documentation/ios-sdk/get-api-key)
 
