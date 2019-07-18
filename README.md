@@ -8,6 +8,7 @@ of various 360|Conferences events.
 1. Edit the values in `constants.dart` for your event:
     - Event title
     - Event id
+    - Event timezone offset
     - Primary/accent theme colors
 
 1. Configure Firebase

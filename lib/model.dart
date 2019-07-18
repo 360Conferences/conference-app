@@ -33,9 +33,12 @@ abstract class ScheduleItem {
   final DateTime startTime;
   final DateTime endTime;
 
-  String get timeSpan => '${DateFormat.MMMEd().add_jm().format(startTime.toLocal())} - ${DateFormat.jm().format(endTime.toLocal())}';
-  String get startAt => DateFormat.jm().format(startTime.toLocal());
-  String get endAt => DateFormat.jm().format(endTime.toLocal());
+  String get timeSpan =>
+    '${DateFormat.MMMEd().add_jm().format(startTime.toUtc().add(kEventOffset))}' +
+    ' - ' +
+    '${DateFormat.jm().format(endTime.toUtc().add(kEventOffset))}';
+  String get startAt => DateFormat.jm().format(startTime.toUtc().add(kEventOffset));
+  String get endAt => DateFormat.jm().format(endTime.toUtc().add(kEventOffset));
 
   EventStatus computeEventStatus(DateTime time) {
     return time.isBefore(this.startTime) ? EventStatus.future

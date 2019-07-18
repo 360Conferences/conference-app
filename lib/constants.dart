@@ -20,6 +20,7 @@ const String kAppTitle = '360|Conferences';
 
 /// Configuration
 const String kEventId = '<firebase-event-id>';
+const Duration kEventOffset = Duration(hours: -6); // GMT-0600
 
 /// Application Theme
 const Color kThemePrimary = Colors.blueGrey;
