@@ -185,7 +185,7 @@ class _ScheduleState extends State<ScheduleView> with WidgetsBindingObserver {
           // During event, offset to the first item still to occur
           if (_eventDates.any((item) => item.difference(_current).inDays == 0)) {
             first = sessions.firstWhere((item) =>
-              item.computeEventStatus(_current) != EventStatus.past);
+              item.computeEventStatus(_current) != EventStatus.past, orElse: () => null);
           }
           
           return CustomScrollView(
