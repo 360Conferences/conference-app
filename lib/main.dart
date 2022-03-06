@@ -52,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _selectItem(SelectedRoute route) {
     if (route == _route) return;
-    
+
     setState(() {
       _route = route;
     });
@@ -88,15 +88,15 @@ class _MyHomePageState extends State<MyHomePage> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.event),
-            title: Text('Schedule'),
+            label: 'Schedule',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            title: Text('Speakers')
+            label: 'Speakers'
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.location_on),
-            title: Text('Location')
+            label: 'Location'
           ),
         ],
         currentIndex: _route.index,
