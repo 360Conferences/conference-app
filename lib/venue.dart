@@ -45,7 +45,7 @@ class _VenueState extends State<VenueView> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(venue.name,
-            style: Theme.of(context).textTheme.headline),
+            style: Theme.of(context).textTheme.headlineMedium),
           (venue.address != null && venue.address.isNotEmpty) ? InkWell(
             child: Padding(
               padding: EdgeInsets.only(top: 8.0, bottom: 8.0),
@@ -55,7 +55,7 @@ class _VenueState extends State<VenueView> {
                   Padding(
                     padding: EdgeInsets.only(left: 8.0),
                     child: Text(venue.address,
-                      style: Theme.of(context).textTheme.subhead),
+                      style: Theme.of(context).textTheme.subtitle1),
                   ),
                 ],
               )
@@ -71,7 +71,7 @@ class _VenueState extends State<VenueView> {
                   Padding(
                     padding: EdgeInsets.only(left: 8.0),
                     child: Text(venue.phone,
-                      style: Theme.of(context).textTheme.subhead),
+                      style: Theme.of(context).textTheme.subtitle1),
                   ),
                 ],
               ),

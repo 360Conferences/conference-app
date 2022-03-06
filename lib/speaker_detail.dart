@@ -63,13 +63,13 @@ class _SpeakerDetailState extends State<SpeakerDetailView> {
         child: Padding(
           padding: EdgeInsets.all(8.0),
           child: Text(widget.speaker.name,
-            style: Theme.of(context).textTheme.headline,
+            style: Theme.of(context).textTheme.headlineMedium,
           ),
         ),
       ),
       Center(
         child: Text(widget.speaker.company,
-          style: Theme.of(context).textTheme.subhead,
+          style: Theme.of(context).textTheme.subtitle1,
         ),
       ),
       Divider(),
@@ -77,7 +77,7 @@ class _SpeakerDetailState extends State<SpeakerDetailView> {
         child: Padding(
           padding: EdgeInsets.all(8.0),
           child: Text('Follow',
-            style: Theme.of(context).textTheme.title,
+            style: Theme.of(context).textTheme.titleMedium,
           ),
         ),
       ),

@@ -55,19 +55,19 @@ class _SchedulesDetailState extends State<ScheduleDetailView> {
       Padding(
         padding: EdgeInsets.all(8.0),
         child: Text(item.title,
-          style: Theme.of(context).textTheme.headline,
+          style: Theme.of(context).textTheme.headlineMedium,
         ),
       ),
       Padding(
         padding: EdgeInsets.only(left: 8.0, right: 8.0),
         child: Text(item.timeSpan,
-          style: Theme.of(context).textTheme.subhead,
+          style: Theme.of(context).textTheme.subtitle1,
         ),
       ),
       Padding(
         padding: EdgeInsets.only(left: 8.0, right: 8.0),
         child: Text(item.location,
-          style: Theme.of(context).textTheme.subhead,
+          style: Theme.of(context).textTheme.subtitle1,
         ),
       ),
     ];

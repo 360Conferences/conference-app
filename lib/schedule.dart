@@ -100,7 +100,7 @@ class _ScheduleState extends State<ScheduleView> with WidgetsBindingObserver {
           child: Text(
             DateFormat.MMMMEEEEd().format(date),
             style:
-                Theme.of(context).textTheme.title.copyWith(color: kThemeAccent),
+                Theme.of(context).textTheme.titleMedium.copyWith(color: kThemeAccent),
           ),
         ),
       ),
@@ -187,7 +187,7 @@ class _ScheduleState extends State<ScheduleView> with WidgetsBindingObserver {
             first = sessions.firstWhere((item) =>
               item.computeEventStatus(_current) != EventStatus.past, orElse: () => null);
           }
-          
+
           return CustomScrollView(
             slivers: _buildSchedule(sessions),
             controller: ScrollController(
@@ -260,7 +260,7 @@ class ScheduleTile extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: Theme.of(context)
                     .textTheme
-                    .subhead
+                    .subtitle1
                     .copyWith(color: kThemePrimary),
               )
             : Container(),
@@ -280,7 +280,7 @@ class ScheduleTile extends StatelessWidget {
       subtitle: Text(item.location,
         style: (this.status != EventStatus.past) ? null : TextStyle(
           color: Colors.grey,
-        ), 
+        ),
       ),
       onTap: () => _showSessionDetail(context),
     );

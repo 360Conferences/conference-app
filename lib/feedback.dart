@@ -76,7 +76,7 @@ class _FeedbackState extends State<FeedbackView> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Text('Overall session experience',
-          style: Theme.of(context).textTheme.headline),
+          style: Theme.of(context).textTheme.headlineMedium),
         FlutterRatingBar(
           initialRating: feedback.overallRating.toDouble(),
           fillColor: kThemeAccent,
@@ -89,7 +89,7 @@ class _FeedbackState extends State<FeedbackView> {
           },
         ),
         Text('Technical level of the content',
-          style: Theme.of(context).textTheme.headline),
+          style: Theme.of(context).textTheme.headlineMedium),
         FlutterRatingBar(
           initialRating: feedback.technicalRating.toDouble(),
           fillColor: kThemeAccent,
@@ -102,7 +102,7 @@ class _FeedbackState extends State<FeedbackView> {
           },
         ),
         Text('Presentation skills of the speaker',
-          style: Theme.of(context).textTheme.headline),
+          style: Theme.of(context).textTheme.headlineMedium),
         FlutterRatingBar(
           initialRating: feedback.presentationRating.toDouble(),
           fillColor: kThemeAccent,
@@ -115,7 +115,7 @@ class _FeedbackState extends State<FeedbackView> {
           },
         ),
         Text('Comments',
-          style: Theme.of(context).textTheme.headline),
+          style: Theme.of(context).textTheme.headlineMedium),
         TextField(
           controller: _controller,
           textCapitalization: TextCapitalization.sentences,
