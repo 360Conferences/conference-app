@@ -26,7 +26,7 @@ def keystorePropertiesFile = rootProject.file('signing.properties')
 if (keystorePropertiesFile.exists()) {
     keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 } else {
-    logger.warn("No android/signing.properties.bak file found. Release signing is not available.")
+    logger.warn("No android/signing.properties file found. Release signing is not available.")
 }
 
 apply plugin: 'com.android.application'
