@@ -1,34 +1,33 @@
-/**
- * Copyright 2019 360|Conferences
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
- * or implied. See the License for the specific language governing
- * permissions and limitations under the License.
- */
-import 'package:rxdart/rxdart.dart';
+/// Copyright 2019 360|Conferences
+///
+/// Licensed under the Apache License, Version 2.0 (the "License");
+/// you may not use this file except in compliance with the License.
+/// You may obtain a copy of the License at
+///
+/// http://www.apache.org/licenses/LICENSE-2.0
+///
+/// Unless required by applicable law or agreed to in writing, software
+/// distributed under the License is distributed on an "AS IS" BASIS,
+/// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+/// or implied. See the License for the specific language governing
+/// permissions and limitations under the License.
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:firebase_database/firebase_database.dart';
+import 'package:intl/intl.dart';
+import 'package:rxdart/rxdart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
-import 'package:intl/intl.dart';
-import 'schedule_detail.dart';
-import 'model.dart' show ScheduleItem, EventStatus, Session;
+
 import 'constants.dart';
+import 'model.dart' show ScheduleItem, EventStatus, Session;
+import 'schedule_detail.dart';
 
 class ScheduleView extends StatefulWidget {
   const ScheduleView({Key key}) : super(key: key);
 
   @override
-  _ScheduleState createState() => new _ScheduleState();
+  _ScheduleState createState() => _ScheduleState();
 }
 
 class _ScheduleState extends State<ScheduleView> with WidgetsBindingObserver {
@@ -45,14 +44,23 @@ class _ScheduleState extends State<ScheduleView> with WidgetsBindingObserver {
     WidgetsBinding.instance.addObserver(this);
 
     _ensureUserSession().then((sessionId) => setState(() {
-      _userSessionId = sessionId;
-      _favoritesRef = FirebaseDatabase.instance.reference()
-        .child('events').child(kEventId).child('favorites').child(_userSessionId);
-    }));
+          _userSessionId = sessionId;
+          _favoritesRef = FirebaseDatabase.instance
+              .reference()
+              .child('events')
+              .child(kEventId)
+              .child('favorites')
+              .child(_userSessionId);
+        }));
 
-    FirebaseDatabase.instance.reference()
-        .child('events').child(kEventId).child('config').child('event_dates')
-        .once().then((DataSnapshot snapshot) {
+    FirebaseDatabase.instance
+        .reference()
+        .child('events')
+        .child(kEventId)
+        .child('config')
+        .child('event_dates')
+        .once()
+        .then((DataSnapshot snapshot) {
       List<dynamic> result = snapshot.value;
       setState(() {
         _eventDates = result.map((item) => DateTime.parse(item)).toList();
@@ -77,8 +85,8 @@ class _ScheduleState extends State<ScheduleView> with WidgetsBindingObserver {
   Future<String> _ensureUserSession() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     if (!prefs.containsKey('userSession')) {
-        var uuid = Uuid();
-        await prefs.setString('userSession', uuid.v4());
+      var uuid = Uuid();
+      await prefs.setString('userSession', uuid.v4());
     }
 
     return prefs.getString('userSession');
@@ -99,8 +107,10 @@ class _ScheduleState extends State<ScheduleView> with WidgetsBindingObserver {
         child: Center(
           child: Text(
             DateFormat.MMMMEEEEd().format(date),
-            style:
-                Theme.of(context).textTheme.titleMedium.copyWith(color: kThemeAccent),
+            style: Theme.of(context)
+                .textTheme
+                .titleMedium
+                .copyWith(color: kThemeAccent),
           ),
         ),
       ),
@@ -149,15 +159,23 @@ class _ScheduleState extends State<ScheduleView> with WidgetsBindingObserver {
       );
     }
 
-    var sessionStream = FirebaseDatabase.instance.reference()
-        .child('events').child(kEventId).child('sessions')
+    var sessionStream = FirebaseDatabase.instance
+        .reference()
+        .child('events')
+        .child(kEventId)
+        .child('sessions')
         .onValue;
-    var speakerStream = FirebaseDatabase.instance.reference()
-        .child('events').child(kEventId).child('speakers')
+    var speakerStream = FirebaseDatabase.instance
+        .reference()
+        .child('events')
+        .child(kEventId)
+        .child('speakers')
         .onValue;
     var favoriteStream = _favoritesRef.onValue;
-    var combined = Observable.combineLatest3<Event, Event, Event, List<ScheduleItem>>(
-        sessionStream, speakerStream, favoriteStream, (first, second, third) {
+    var combined =
+        Observable.combineLatest3<Event, Event, Event, List<ScheduleItem>>(
+            sessionStream, speakerStream, favoriteStream,
+            (first, second, third) {
       Map<dynamic, dynamic> sessions = first.snapshot.value;
       Map<dynamic, dynamic> speakers = second.snapshot.value;
       Map<dynamic, dynamic> favorites = third.snapshot.value;
@@ -172,7 +190,8 @@ class _ScheduleState extends State<ScheduleView> with WidgetsBindingObserver {
 
     return StreamBuilder<List<ScheduleItem>>(
         stream: combined,
-        builder:(BuildContext context, AsyncSnapshot<List<ScheduleItem>> snapshot) {
+        builder:
+            (BuildContext context, AsyncSnapshot<List<ScheduleItem>> snapshot) {
           if (snapshot.hasError) {
             return Text('Unable to load sessions');
           }
@@ -183,9 +202,11 @@ class _ScheduleState extends State<ScheduleView> with WidgetsBindingObserver {
 
           ScheduleItem first;
           // During event, offset to the first item still to occur
-          if (_eventDates.any((item) => item.difference(_current).inDays == 0)) {
-            first = sessions.firstWhere((item) =>
-              item.computeEventStatus(_current) != EventStatus.past, orElse: () => null);
+          if (_eventDates
+              .any((item) => item.difference(_current).inDays == 0)) {
+            first = sessions.firstWhere(
+                (item) => item.computeEventStatus(_current) != EventStatus.past,
+                orElse: () => null);
           }
 
           return CustomScrollView(
@@ -235,7 +256,10 @@ class ScheduleTile extends StatelessWidget {
     await Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => ScheduleDetailView(item: this.item, status: this.status, userSession: parent._userSessionId),
+        builder: (context) => ScheduleDetailView(
+            item: this.item,
+            status: this.status,
+            userSession: parent._userSessionId),
       ),
     );
     this.parent._updateTimeState();
@@ -256,7 +280,8 @@ class ScheduleTile extends StatelessWidget {
       leading: SizedBox(
         width: 56.0,
         child: showTime
-            ? Text(item.startAt,
+            ? Text(
+                item.startAt,
                 textAlign: TextAlign.center,
                 style: Theme.of(context)
                     .textTheme
@@ -265,22 +290,31 @@ class ScheduleTile extends StatelessWidget {
               )
             : Container(),
       ),
-      trailing: (item is Session) ? IconButton(
-        icon: (item as Session).isFavorite ?
-          Icon(Icons.star, color: kThemeAccent) : Icon(Icons.star_border),
-        onPressed: () => _setSessionFavorite(item as Session),
-      ) : null,
-      title: Text(item.title,
+      trailing: (item is Session)
+          ? IconButton(
+              icon: (item as Session).isFavorite
+                  ? Icon(Icons.star, color: kThemeAccent)
+                  : Icon(Icons.star_border),
+              onPressed: () => _setSessionFavorite(item as Session),
+            )
+          : null,
+      title: Text(
+        item.title,
         maxLines: 2,
         overflow: TextOverflow.ellipsis,
-        style: (this.status != EventStatus.past) ? null : TextStyle(
-          color: Colors.grey,
-        ),
+        style: (this.status != EventStatus.past)
+            ? null
+            : TextStyle(
+                color: Colors.grey,
+              ),
       ),
-      subtitle: Text(item.location,
-        style: (this.status != EventStatus.past) ? null : TextStyle(
-          color: Colors.grey,
-        ),
+      subtitle: Text(
+        item.location,
+        style: (this.status != EventStatus.past)
+            ? null
+            : TextStyle(
+                color: Colors.grey,
+              ),
       ),
       onTap: () => _showSessionDetail(context),
     );
