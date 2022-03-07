@@ -6,6 +6,8 @@ GoogleService-Info.plist
 images/**/logo.png
 # Signing Info
 **/android/signing.properties
+# Secrets
+**/android/**/secrets.xml
 *.jks
 
 # Miscellaneous
