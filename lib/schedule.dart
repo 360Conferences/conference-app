@@ -172,7 +172,7 @@ class _ScheduleState extends State<ScheduleView> with WidgetsBindingObserver {
         .child('speakers')
         .onValue;
     var favoriteStream = _favoritesRef.onValue;
-    var combined = Observable.combineLatest3<
+    var combined = Rx.combineLatest3<
             DatabaseEvent,
             DatabaseEvent,
             DatabaseEvent,
