@@ -81,44 +81,58 @@ class _FeedbackState extends State<FeedbackView> {
       children: <Widget>[
         Text('Overall session experience',
             style: Theme.of(context).textTheme.headlineMedium),
-        FlutterRatingBar(
+
+        // https://pub.dev/packages/flutter_rating_bar
+        RatingBar.builder(
           initialRating: feedback.overallRating.toDouble(),
-          fillColor: kThemeAccent,
-          borderColor: kThemeAccent.withAlpha(50),
           allowHalfRating: true,
+          itemBuilder: (context, _) => Icon(
+            Icons.star,
+            color: kThemeAccent,
+          ),
           onRatingUpdate: (rating) {
             setState(() {
               _overallScore = rating;
             });
           },
         ),
+
         Text('Technical level of the content',
             style: Theme.of(context).textTheme.headlineMedium),
-        FlutterRatingBar(
+
+        RatingBar.builder(
           initialRating: feedback.technicalRating.toDouble(),
-          fillColor: kThemeAccent,
-          borderColor: kThemeAccent.withAlpha(50),
           allowHalfRating: true,
+          itemBuilder: (context, _) => Icon(
+            Icons.star,
+            color: kThemeAccent,
+          ),
           onRatingUpdate: (rating) {
             setState(() {
               _technicalScore = rating;
             });
           },
         ),
+
         Text('Presentation skills of the speaker',
             style: Theme.of(context).textTheme.headlineMedium),
-        FlutterRatingBar(
+
+        RatingBar.builder(
           initialRating: feedback.presentationRating.toDouble(),
-          fillColor: kThemeAccent,
-          borderColor: kThemeAccent.withAlpha(50),
           allowHalfRating: true,
+          itemBuilder: (context, _) => Icon(
+            Icons.star,
+            color: kThemeAccent,
+          ),
           onRatingUpdate: (rating) {
             setState(() {
               _presentationScore = rating;
             });
           },
         ),
+
         Text('Comments', style: Theme.of(context).textTheme.headlineMedium),
+
         TextField(
           controller: _controller,
           textCapitalization: TextCapitalization.sentences,
