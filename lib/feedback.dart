@@ -41,7 +41,7 @@ class _FeedbackState extends State<FeedbackView> {
     super.initState();
 
     _feedbackRef = FirebaseDatabase.instance
-        .reference()
+        .ref()
         .child('events')
         .child(kEventId)
         .child('feedback')

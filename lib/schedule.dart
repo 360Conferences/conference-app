@@ -46,7 +46,7 @@ class _ScheduleState extends State<ScheduleView> with WidgetsBindingObserver {
     _ensureUserSession().then((sessionId) => setState(() {
           _userSessionId = sessionId;
           _favoritesRef = FirebaseDatabase.instance
-              .reference()
+              .ref()
               .child('events')
               .child(kEventId)
               .child('favorites')
@@ -54,7 +54,7 @@ class _ScheduleState extends State<ScheduleView> with WidgetsBindingObserver {
         }));
 
     FirebaseDatabase.instance
-        .reference()
+        .ref()
         .child('events')
         .child(kEventId)
         .child('config')
@@ -160,13 +160,13 @@ class _ScheduleState extends State<ScheduleView> with WidgetsBindingObserver {
     }
 
     var sessionStream = FirebaseDatabase.instance
-        .reference()
+        .ref()
         .child('events')
         .child(kEventId)
         .child('sessions')
         .onValue;
     var speakerStream = FirebaseDatabase.instance
-        .reference()
+        .ref()
         .child('events')
         .child(kEventId)
         .child('speakers')

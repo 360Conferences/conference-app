@@ -108,7 +108,7 @@ class _VenueState extends State<VenueView> {
   Widget build(BuildContext context) {
     return StreamBuilder<Event>(
       stream: FirebaseDatabase.instance
-          .reference()
+          .ref()
           .child('events')
           .child(kEventId)
           .child('venue')

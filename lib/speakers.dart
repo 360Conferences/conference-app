@@ -30,7 +30,7 @@ class _SpeakerState extends State<SpeakerView> {
   Widget build(BuildContext context) {
     return StreamBuilder<Event>(
       stream: FirebaseDatabase.instance
-          .reference()
+          .ref()
           .child('events')
           .child(kEventId)
           .child('speakers')
