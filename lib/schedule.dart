@@ -20,7 +20,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
 
 import 'constants.dart';
-import 'model.dart' show ScheduleItem, EventStatus, Session;
+import 'model.dart' show EventStatus, ScheduleItem, Session;
 import 'schedule_detail.dart';
 
 class ScheduleView extends StatefulWidget {
@@ -172,10 +172,12 @@ class _ScheduleState extends State<ScheduleView> with WidgetsBindingObserver {
         .child('speakers')
         .onValue;
     var favoriteStream = _favoritesRef.onValue;
-    var combined =
-        Observable.combineLatest3<Event, Event, Event, List<ScheduleItem>>(
-            sessionStream, speakerStream, favoriteStream,
-            (first, second, third) {
+    var combined = Observable.combineLatest3<
+            DatabaseEvent,
+            DatabaseEvent,
+            DatabaseEvent,
+            List<ScheduleItem>>(sessionStream, speakerStream, favoriteStream,
+        (first, second, third) {
       Map<dynamic, dynamic> sessions = first.snapshot.value;
       Map<dynamic, dynamic> speakers = second.snapshot.value;
       Map<dynamic, dynamic> favorites = third.snapshot.value;

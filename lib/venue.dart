@@ -106,14 +106,14 @@ class _VenueState extends State<VenueView> {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<Event>(
+    return StreamBuilder<DatabaseEvent>(
       stream: FirebaseDatabase.instance
           .ref()
           .child('events')
           .child(kEventId)
           .child('venue')
           .onValue,
-      builder: (BuildContext context, AsyncSnapshot<Event> snapshot) {
+      builder: (BuildContext context, AsyncSnapshot<DatabaseEvent> snapshot) {
         if (snapshot.hasError) {
           return Text('Unable to load venue');
         }

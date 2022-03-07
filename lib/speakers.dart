@@ -28,14 +28,14 @@ class SpeakerView extends StatefulWidget {
 class _SpeakerState extends State<SpeakerView> {
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<Event>(
+    return StreamBuilder<DatabaseEvent>(
       stream: FirebaseDatabase.instance
           .ref()
           .child('events')
           .child(kEventId)
           .child('speakers')
           .onValue,
-      builder: (BuildContext context, AsyncSnapshot<Event> snapshot) {
+      builder: (BuildContext context, AsyncSnapshot<DatabaseEvent> snapshot) {
         if (snapshot.hasError) {
           return Text('Unable to load speakers');
         }

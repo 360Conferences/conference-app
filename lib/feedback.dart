@@ -31,7 +31,7 @@ class _FeedbackState extends State<FeedbackView> {
   var _scaffoldKey = GlobalKey<ScaffoldState>();
 
   DatabaseReference _feedbackRef;
-  Stream<Event> _feedbackStream;
+  Stream<DatabaseEvent> _feedbackStream;
 
   double _overallScore, _technicalScore, _presentationScore;
   TextEditingController _controller = TextEditingController();
@@ -144,9 +144,10 @@ class _FeedbackState extends State<FeedbackView> {
       ),
       body: _feedbackStream == null
           ? Container()
-          : StreamBuilder<Event>(
+          : StreamBuilder<DatabaseEvent>(
               stream: _feedbackStream,
-              builder: (BuildContext context, AsyncSnapshot<Event> snapshot) {
+              builder: (BuildContext context,
+                  AsyncSnapshot<DatabaseEvent> snapshot) {
                 if (snapshot.hasError) {
                   return Text('Unable to load feedback');
                 }
