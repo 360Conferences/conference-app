@@ -9,8 +9,7 @@
          https://github.com/flutter/engine/blob/master/shell/platform/android/io/flutter/embedding/android/FlutterActivity.java
          -->
     <application
-        android:label="360|Conferences"
-        android:icon="@mipmap/ic_launcher">
+        android:label="360|Conferences">
         <activity
             android:exported="true"
             android:name=".MainActivity"
