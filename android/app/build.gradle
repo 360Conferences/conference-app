@@ -2,6 +2,7 @@
  * app/build.gradle
  */
 
+apply plugin: "com.android.application"
 apply plugin: "com.google.gms.google-services"
 
 def localProperties = new Properties()
@@ -16,6 +17,8 @@ def flutterRoot = localProperties.getProperty('flutter.sdk')
 if (flutterRoot == null) {
     throw new FileNotFoundException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
 }
+
+apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
 if (flutterVersionCode == null) {
@@ -35,17 +38,14 @@ if (keystorePropertiesFile.exists()) {
     logger.warn("No android/signing.properties file found. Release signing is not available.")
 }
 
-apply plugin: 'com.android.application'
-apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
-
 android {
-    compileSdkVersion 31
-
+    compileSdkVersion 32
 
     defaultConfig {
-        applicationId "com.threesixtyconferences.app"
+//        applicationId "com.threesixtyconferences.app"
+        applicationId "com.chicagoroboto"
         minSdkVersion 16
-        targetSdkVersion 31
+        targetSdkVersion 32
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
