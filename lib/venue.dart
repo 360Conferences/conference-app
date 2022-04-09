@@ -15,7 +15,7 @@ import 'dart:async';
 
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+// import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'constants.dart';
@@ -29,7 +29,7 @@ class VenueView extends StatefulWidget {
 }
 
 class _VenueState extends State<VenueView> {
-  Completer<GoogleMapController> _controller = Completer();
+  // Completer<GoogleMapController> _controller = Completer();
 
   void _launchUrl(String url) async {
     if (await canLaunch(url)) {
@@ -81,23 +81,23 @@ class _VenueState extends State<VenueView> {
                 )
               : Container(),
           Expanded(
-            child: GoogleMap(
-              mapType: MapType.normal,
-              initialCameraPosition: CameraPosition(
-                  target: LatLng(venue.latitude, venue.longitude), zoom: 17.0),
-              markers: [
-                Marker(
-                  markerId: MarkerId('1'),
-                  position: LatLng(venue.latitude, venue.longitude),
-                ),
-              ].toSet(),
-              rotateGesturesEnabled: false,
-              scrollGesturesEnabled: false,
-              tiltGesturesEnabled: false,
-              onMapCreated: (GoogleMapController controller) {
-                _controller.complete(controller);
-              },
-            ),
+            // child: GoogleMap(
+            //   mapType: MapType.normal,
+            //   initialCameraPosition: CameraPosition(
+            //       target: LatLng(venue.latitude, venue.longitude), zoom: 17.0),
+            //   markers: [
+            //     Marker(
+            //       markerId: MarkerId('1'),
+            //       position: LatLng(venue.latitude, venue.longitude),
+            //     ),
+            //   ].toSet(),
+            //   rotateGesturesEnabled: false,
+            //   scrollGesturesEnabled: false,
+            //   tiltGesturesEnabled: false,
+            //   onMapCreated: (GoogleMapController controller) {
+            //     _controller.complete(controller);
+            //   },
+            // ),
           ),
         ],
       ),
