@@ -11,14 +11,23 @@
 /// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
 /// or implied. See the License for the specific language governing
 /// permissions and limitations under the License.
+
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 import 'constants.dart';
 import 'schedule.dart';
 import 'speakers.dart';
 import 'venue.dart';
 
-void main() => runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
