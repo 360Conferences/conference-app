@@ -5,6 +5,14 @@ of various 360|Conferences events.
 
 ## Getting Started
 
+```shell
+❯ firebase login
+❯ firebase projects:list
+❯ firebase use <project-id>
+❯ dart pub global activate flutterfire_cli
+❯ flutterfire configure
+```
+
 1. Edit the values in `constants.dart` for your event:
 
    - Event title
