@@ -33,7 +33,7 @@ dev_dependencies:
   shared_preferences: ^2.0.13
   uuid: ^3.0.6
   url_launcher: ^6.0.20
-  google_maps_flutter: ^2.1.2
+  # google_maps_flutter: ^2.1.2
   flutter_rating_bar: ^4.0.0
   rxdart: ^0.27.3
 
