@@ -39,6 +39,10 @@ images/**/logo.png
 .pub/
 /build/
 
+# Event-specific
+/lib/firebase_options.dart
+firebase_app_id_file.json
+
 # Android related
 **/android/**/gradle-wrapper.jar
 **/android/.gradle
@@ -48,7 +52,7 @@ images/**/logo.png
 **/android/local.properties
 **/android/**/GeneratedPluginRegistrant.java
 
-# iOS/XCode related
+# iOS/Xcode related
 **/ios/**/*.mode1v3
 **/ios/**/*.mode2v3
 **/ios/**/*.moved-aside
