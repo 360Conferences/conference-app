@@ -80,7 +80,7 @@ class _VenueState extends State<VenueView> {
                   onTap: () => _launchUrl(venue.phoneUrl),
                 )
               : Container(),
-          Expanded(
+          // Expanded(
             // child: GoogleMap(
             //   mapType: MapType.normal,
             //   initialCameraPosition: CameraPosition(
@@ -98,7 +98,7 @@ class _VenueState extends State<VenueView> {
             //     _controller.complete(controller);
             //   },
             // ),
-          ),
+          // ),
         ],
       ),
     );
