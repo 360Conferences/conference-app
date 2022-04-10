@@ -62,9 +62,11 @@ class _ScheduleState extends State<ScheduleView> with WidgetsBindingObserver {
         .once()
         .then((DatabaseEvent event) {
       List<dynamic> result = event.snapshot.value;
-      setState(() {
-        _eventDates = result.map((item) => DateTime.parse(item)).toList();
-      });
+      if (result != null) {
+        setState(() {
+          _eventDates = result.map((item) => DateTime.parse(item)).toList();
+        });
+      }
     });
   }
 
