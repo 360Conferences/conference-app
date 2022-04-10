@@ -66,6 +66,8 @@ class _ScheduleState extends State<ScheduleView> with WidgetsBindingObserver {
         setState(() {
           _eventDates = result.map((item) => DateTime.parse(item)).toList();
         });
+      } else {
+        print("No data found for events.$kEventId.config.event_dates in Firebase Realtime Database");
       }
     });
   }
