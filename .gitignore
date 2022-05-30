@@ -6,6 +6,8 @@ GoogleService-Info.plist
 images/**/logo.png
 # Signing Info
 **/android/signing.properties
+# Secrets
+**/android/**/secrets.xml
 *.jks
 
 # Miscellaneous
@@ -31,11 +33,17 @@ images/**/logo.png
 # Flutter/Dart/Pub related
 **/doc/api/
 .dart_tool/
-.flutter-plugins
+.flutter-plugins*
 .packages
 .pub-cache/
 .pub/
 /build/
+
+# Event-specific
+.config/
+.firebaserc
+/lib/firebase_options.dart
+firebase_app_id_file.json
 
 # Android related
 **/android/**/gradle-wrapper.jar
@@ -46,7 +54,7 @@ images/**/logo.png
 **/android/local.properties
 **/android/**/GeneratedPluginRegistrant.java
 
-# iOS/XCode related
+# iOS/Xcode related
 **/ios/**/*.mode1v3
 **/ios/**/*.mode2v3
 **/ios/**/*.moved-aside
@@ -69,6 +77,7 @@ images/**/logo.png
 **/ios/Flutter/app.flx
 **/ios/Flutter/app.zip
 **/ios/Flutter/flutter_assets/
+**/ios/Flutter/flutter_export_environment.sh
 **/ios/ServiceDefinitions.json
 **/ios/Runner/GeneratedPluginRegistrant.*
 
