@@ -11,10 +11,11 @@ description: 360 Conferences App
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 2019.1.0+20190001
+version: 2022.5.0+20220001
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  # Dart SDK version
+  sdk: "^2.17.0"
 
 dependencies:
   flutter:
